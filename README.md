@@ -1,6 +1,7 @@
 ﻿# Basic Setup Guide
 
 Before doing anything be sure to enable clipboard history, this can be done with ``window key + v``
+Next create a ``Programs`` folder and a ``Coding`` folder in the documents directory
 
 ## Setting up the terminal
 
@@ -21,7 +22,7 @@ Then just scroll all the way down to schemes and add the copied JSON text
 
 Next head to the Defualts > Apperance and complete the following
 
-- Set the color scheme to the one you just added (I use Arthur)
+- Set the color scheme to the one you just added (I use a modified version of Atom, which can be found in the resources folder)
 - Set the font face to whatever font you downloaded
 
 ## Execution Policy
@@ -31,7 +32,7 @@ This will allow us to run scripts which is kinda required for oh-my-posh
 
 First to check the current policy run the following command
 
-``` jack
+``` bash
 Get-ExecutionPolicy -List
 ```
 
@@ -40,7 +41,7 @@ Sadly, due to the device polices we cant do this and will instead have to run if
 
 Luckily this is pretty easy by running the following command
 
-``` jack
+``` bash
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
 ```
 
@@ -53,13 +54,13 @@ Now lets get to work with oh-my-posh, basically follow the guide found on the [s
 
 First download oh-my-posh on the terminal via winget
 
-``` jack
+``` bash
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
 Next reoload the terminal and run
 
-``` jack
+``` bash
 oh-my-posh
 ```
 
@@ -69,24 +70,24 @@ Next you will want create a powershell profile
 This is where you will be able to setup the settings / config for powershell
 Run the following commands to create and open these files
 
-``` jack
+``` bash
 New-Item -Path $PROFILE -Type File -Force
 ```
 
-``` jack
+``` bash
 notepad $PROFILE
 ```
 
 Now that you have the file open simple paste the following into the document
 
-``` ps1
+``` bash
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/[Theme Title].omp.json" | Invoke-Expression
 cls
 ```
 
 Be sure to change the theme title the theme you wish to use, you can check what themes are avaliable by either running the command ``Get-PoshThemes`` or if its not currently working you can check out the [site](https://ohmyposh.dev/docs/themes)
 cls is also optional, I just find it makes it look cleaner
-I often use a slightly modified version of ``emodipt-extend``
+I often use a slightly modified version of ``amro``
 
 ## Get Git
 
@@ -95,14 +96,14 @@ Kinda funny, I know.
 Since we cant (as far as I know simply run the git installer) we will use the easiest way to bypass **WINGET**
 Simply run the following command and then done, you have git installed
 
-``` jack
+``` bash
 winget install --id Git.Git -e --source winget
 ```
 
 Next we need too update the config of git allowing us too actual push files
 I like to append the room name / ID atleast when setting this up at school
 
-``` jack
+``` bash
 git config --global user.name "[name] [room]"
 git config --global user.email "[email]"
 ```
@@ -112,8 +113,23 @@ git config --global user.email "[email]"
 Head to the settings and search for ``Editor Font Family``
 And paste the following
 
-```jack
+```bash
 Consolas, 'Courier New', monospace, 'FiraCode Nerd Font'
 ```
 
 And that pretty much covers all of it
+
+## Install NodeJS
+
+I will never get the pleasure of using NodeJS in class for an actual project
+But, I will sure as hell download it for "fun"
+
+The first step is to head to node js site and download the prebuilt binaries option
+Be sure to download the LTS version, just for long life in projects. The downloads can be found [here](https://nodejs.org/en/download/prebuilt-binaries)
+
+Next extract the ``node-[version]-win-x64`` folder from the zip file and drop it in the programs folder
+From there you will want to copy the path of the folder so we can add it to the command line
+
+In order to add NodeJS path you will want to search ``Edit environment variables for your account`` in the windows search bar
+From there you will wanna click ``Path`` >> ``Edit...`` >> ``New`` then simply paste the the path into the text box
+Then click on both the ok buttons to close the menu and done
